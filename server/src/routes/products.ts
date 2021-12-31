@@ -4,14 +4,14 @@ import Product from '../models/Product';
 const router = Router();
 
 router.get('/', async (req, res) => {
-  const category = req.query;
+  const { category } = req.query;
 
   if (category) {
     const productsWithCategory = await Product.find({ category });
 
     return res.send(productsWithCategory);
   } else {
-    const allProducts = await Product.find({});
+    const allProducts = await Product.find();
 
     return res.send(allProducts);
   }

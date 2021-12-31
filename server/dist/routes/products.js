@@ -47,13 +47,13 @@ router.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, f
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                category = req.query;
+                category = req.query.category;
                 if (!category) return [3 /*break*/, 2];
                 return [4 /*yield*/, Product_1.default.find({ category: category })];
             case 1:
                 productsWithCategory = _a.sent();
                 return [2 /*return*/, res.send(productsWithCategory)];
-            case 2: return [4 /*yield*/, Product_1.default.find({})];
+            case 2: return [4 /*yield*/, Product_1.default.find()];
             case 3:
                 allProducts = _a.sent();
                 return [2 /*return*/, res.send(allProducts)];

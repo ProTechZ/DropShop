@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import productsRouter from './routes/products';
 import usersRouter from './routes/users';
 import authRouter from './routes/auth';
+import cors from 'cors';
 
 config();
 
@@ -14,6 +15,14 @@ mongoose.connect(process.env.DB_CONNECT!, (error) => {
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.use(
+  cors({
+    origin: ['http://localhost:3000'],
+    credentials: true,
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Set-Cookie'],
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

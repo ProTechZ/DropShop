@@ -4,8 +4,9 @@ import TopSection from './TopSection';
 import SearchBar from './SearchBar';
 
 import useGlobalStyles from '../../hooks/useGlobalStyles';
+import React from 'react';
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const classes = useGlobalStyles();
 
   return (

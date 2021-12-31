@@ -4,8 +4,9 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCartOutlined';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import useGlobalStyles from '../../hooks/useGlobalStyles';
+import React from 'react';
 
-const TopSection = () => {
+const TopSection: React.FC = () => {
   const classes = useGlobalStyles();
 
   return (
