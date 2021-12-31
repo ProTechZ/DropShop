@@ -1,23 +1,33 @@
 import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
-
 import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCartOutlined';
+import IconButton from '@mui/material/IconButton';
+import Box from '@mui/material/Box';
+import useGlobalStyles from '../../hooks/useGlobalStyles';
 
 const TopSection = () => {
+  const classes = useGlobalStyles();
+
   return (
-    <Stack direction="row" spacing={6}>
-      <MenuIcon fontSize="large" htmlColor="white" />
+    <Box
+      sx={{
+        gap: 6,
+        width: '90%',
+      }}
+      className={classes.horizontalVerticalCenter}
+    >
+      <IconButton children={<MenuIcon fontSize="large" />} color="inherit" />
       <Typography
-        letterSpacing={3}
-        variant="h4"
-        color="white"
-        fontFamily="Fira Sans"
+        variant="h5"
+        sx={{ letterSpacing: 2.5, fontFamily: 'Fira Sans, sans-serif' }}
       >
         DROPSHOP
       </Typography>
-      <ShoppingCartIcon fontSize="large" htmlColor="white" />
-    </Stack>
+      <IconButton
+        children={<ShoppingCartIcon fontSize="large" />}
+        color="inherit"
+      />
+    </Box>
   );
 };
 

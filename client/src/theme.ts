@@ -9,6 +9,10 @@ const theme = createTheme({
       main: '#2C5EFF',
     },
   },
+
+  typography: {
+    fontFamily: 'Work Sans, sans-serif',
+  },
 });
 
 export default theme;
