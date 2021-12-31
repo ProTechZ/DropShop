@@ -46,7 +46,7 @@ router.post('/create', async (req, res) => {
 
     const savedProduct = await newProduct.save();
 
-    return res.send(savedProduct._id);
+    return res.send(`The new product's id is ${savedProduct._id}`);
   } catch (err) {
     console.log(err);
     return res.status(500).send(err);

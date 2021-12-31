@@ -6,11 +6,12 @@ import Typography from '@mui/material/Typography';
 import React from 'react';
 
 export interface ProductProps {
-  title: String;
-  category: String;
-  description?: String;
-  image: String;
-  price: Number;
+  _id: number;
+  title: string;
+  category: string;
+  description?: string;
+  image: string;
+  price: number;
 }
 
 const Product: React.FC<ProductProps> = (props) => {
@@ -20,12 +21,7 @@ const Product: React.FC<ProductProps> = (props) => {
     <>
       <Card sx={{ maxWidth: 345 }}>
         <CardActionArea>
-          <CardMedia
-            component="img"
-            height="140"
-            image="/static/images/cards/contemplative-reptile.jpg"
-            alt="green iguana"
-          />
+          <CardMedia component="img" height="140" image={image} alt={title} />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               Lizard

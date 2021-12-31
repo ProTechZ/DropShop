@@ -1,12 +1,13 @@
 import React from 'react';
-import ProductList from './ProductList';
+import ProductList from './components/ProductList';
 
 export type ProductType = {
-  title: String;
-  category: String;
-  description?: String;
-  image: String;
-  price: Number;
+  _id: number
+  title: string;
+  category: string;
+  description?: string;
+  image: string;
+  price: number;
 };
 
 const AllProductsPage: React.FC = () => {

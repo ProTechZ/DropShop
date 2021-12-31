@@ -103,7 +103,7 @@ router.post('/create', function (req, res) { return __awaiter(void 0, void 0, vo
                 return [4 /*yield*/, newProduct.save()];
             case 4:
                 savedProduct = _b.sent();
-                return [2 /*return*/, res.send(savedProduct._id)];
+                return [2 /*return*/, res.send("The new product's id is ".concat(savedProduct._id))];
             case 5:
                 err_1 = _b.sent();
                 console.log(err_1);

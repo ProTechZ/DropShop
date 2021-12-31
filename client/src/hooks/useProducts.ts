@@ -3,7 +3,6 @@ import { ProductType } from '../pages/AllProducts';
 import { useState, useEffect } from 'react';
 
 const useProducts = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<AxiosError>();
   const [data, setData] = useState<ProductType[]>([]);
 
@@ -12,7 +11,6 @@ const useProducts = () => {
       (async () => {
         const data = await axios.get('http://localhost:8000/products');
 
-        setIsLoading(false);
         setData(data.data as ProductType[]);
       })();
     } catch (err) {
@@ -20,7 +18,7 @@ const useProducts = () => {
     }
   }, []);
 
-  return { isLoading, error, data };
+  return { error, data };
 };
 
 export default useProducts;

@@ -1,9 +1,9 @@
 import { ActionType, CartActions } from '../actions/cartActions';
 
 type CartProductType = {
-  title: String;
-  category: String;
-  description: String;
+  title: string;
+  category: string;
+  description: string;
   createdAt: Date;
   quantity: 1;
 };
