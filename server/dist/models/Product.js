@@ -16,9 +16,15 @@ var productSchema = new mongoose_1.default.Schema({
     },
     description: {
         type: String,
+    },
+    image: {
+        type: String,
         required: true,
     },
-    createdAt: { type: Date, default: Date.now },
+    price: {
+        type: Number,
+        required: true,
+    },
 });
 var Product = mongoose_1.default.model('Product', productSchema);
 exports.default = Product;

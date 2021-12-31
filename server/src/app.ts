@@ -14,6 +14,18 @@ mongoose.connect(process.env.DB_CONNECT!, (error) => {
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use((req, res, next) => {
+  try {
+    next();
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send(err);
+  }
+});
+
 app.use('/products', productsRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);

@@ -43,60 +43,72 @@ var express_1 = require("express");
 var Product_1 = __importDefault(require("../models/Product"));
 var router = (0, express_1.Router)();
 router.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var allProducts, err_1;
+    var category, productsWithCategory, allProducts;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, Product_1.default.find({})];
+                category = req.query;
+                if (!category) return [3 /*break*/, 2];
+                return [4 /*yield*/, Product_1.default.find({ category: category })];
             case 1:
+                productsWithCategory = _a.sent();
+                return [2 /*return*/, res.send(productsWithCategory)];
+            case 2: return [4 /*yield*/, Product_1.default.find({})];
+            case 3:
                 allProducts = _a.sent();
                 return [2 /*return*/, res.send(allProducts)];
-            case 2:
-                err_1 = _a.sent();
-                console.error(err_1);
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
         }
     });
 }); });
 router.get('/:id', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var id, productWithID, err_2;
+    var id, productWithID;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
                 id = req.params.id;
                 return [4 /*yield*/, Product_1.default.findOne({ _id: id })];
             case 1:
                 productWithID = _a.sent();
                 res.send(productWithID);
-                return [3 /*break*/, 3];
-            case 2:
-                err_2 = _a.sent();
-                console.error(err_2);
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                return [2 /*return*/];
         }
     });
 }); });
-router.get('/:category', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var category, productsWithCategory, err_3;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
+router.post('/create', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, title, category, description, image, price, productWithSameTitle, newProduct, savedProduct, err_1;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
-                category = req.params.category;
-                return [4 /*yield*/, Product_1.default.findOne({ category: category })];
+                _a = req.body, title = _a.title, category = _a.category, description = _a.description, image = _a.image, price = _a.price;
+                _b.label = 1;
             case 1:
-                productsWithCategory = _a.sent();
-                res.send(productsWithCategory);
-                return [3 /*break*/, 3];
+                _b.trys.push([1, 5, , 6]);
+                return [4 /*yield*/, Product_1.default.findOne({ title: title })];
             case 2:
-                err_3 = _a.sent();
-                console.error(err_3);
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                productWithSameTitle = _b.sent();
+                if (productWithSameTitle) {
+                    return [2 /*return*/, res
+                            .status(409)
+                            .send("A product with the title \"".concat(title, "\" already exist"))];
+                }
+                return [4 /*yield*/, Product_1.default.create({
+                        title: title,
+                        category: category,
+                        description: description,
+                        image: image,
+                        price: +price,
+                    })];
+            case 3:
+                newProduct = _b.sent();
+                return [4 /*yield*/, newProduct.save()];
+            case 4:
+                savedProduct = _b.sent();
+                return [2 /*return*/, res.send(savedProduct._id)];
+            case 5:
+                err_1 = _b.sent();
+                console.log(err_1);
+                return [2 /*return*/, res.status(500).send(err_1)];
+            case 6: return [2 /*return*/];
         }
     });
 }); });

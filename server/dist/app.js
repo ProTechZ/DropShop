@@ -15,6 +15,17 @@ mongoose_1.default.connect(process.env.DB_CONNECT, function (error) {
 });
 var app = (0, express_1.default)();
 var PORT = process.env.PORT || 5000;
+app.use(express_1.default.json());
+app.use(express_1.default.urlencoded({ extended: true }));
+app.use(function (req, res, next) {
+    try {
+        next();
+    }
+    catch (err) {
+        console.log(err);
+        return res.status(500).send(err);
+    }
+});
 app.use('/products', products_1.default);
 app.use('/users', users_1.default);
 app.use('/auth', auth_1.default);

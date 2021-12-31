@@ -52,3 +52,12 @@ router.get('/logout', function (req, res) { return __awaiter(void 0, void 0, voi
     return [2 /*return*/];
 }); }); });
 exports.default = router;
+/*
+
+SPORTS
+CLOTHING
+ACCESSORIES
+COMPUTER
+ELECTRONICS
+
+*/ 
