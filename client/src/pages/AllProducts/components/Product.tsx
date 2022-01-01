@@ -1,9 +1,11 @@
-import Card from '@mui/material/Card';
-import CardActionArea from '@mui/material/CardActionArea';
+import React from 'react';
+import Box from '@mui/material/Box';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import CardActionArea from '@mui/material/CardActionArea';
 import Typography from '@mui/material/Typography';
-import React from 'react';
+import useGlobalStyles from '../../../hooks/useGlobalStyles';
+import { useStyles } from '..';
 
 export interface ProductProps {
   _id: number;
@@ -15,25 +17,38 @@ export interface ProductProps {
 }
 
 const Product: React.FC<ProductProps> = (props) => {
-  const { title, category, description, image, price } = props;
+  const classes = useGlobalStyles();
+  const localClasses = useStyles();
+
+  const { title, category, image, price } = props;
 
   return (
-    <>
-      <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea>
-          <CardMedia component="img" height="140" image={image} alt={title} />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Lizard
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-    </>
+    <Box
+      sx={{
+        marginX: 1,
+      }}
+      className={`
+        ${classes.secondaryBorder}
+        ${localClasses.borderRadius}
+      `}
+    >
+      <CardActionArea sx={{ display: 'flex' }}>
+        <CardMedia
+          component="img"
+          className={`${localClasses.borderRadius} ${localClasses.ml1}`}
+          image={image}
+          alt={title}
+        />
+        <CardContent className={localClasses.ml1}>
+          <Typography gutterBottom variant="h6">
+            {title}
+          </Typography>
+          <Typography variant="subtitle1" color="text.secondary">
+            {category}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Box>
   );
 };
 

@@ -1,4 +1,5 @@
-import { makeStyles } from '@mui/styles';
+import { makeStyles } from '@mui/styles'
+import theme from '../theme';
 
 const useGlobalStyles = makeStyles({
   horizontalCenter: {
@@ -14,8 +15,11 @@ const useGlobalStyles = makeStyles({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  noBorder: {
-    border: 'none',
+  textCenter: {
+    textAlign: 'center'
+  },
+  secondaryBorder: {
+    border: `2px solid ${theme.palette.secondary.main}`,
   },
 });
 
