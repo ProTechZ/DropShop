@@ -11,7 +11,7 @@ export interface ProductProps {
   _id: number;
   title: string;
   category: string;
-  description?: string;
+  description: string;
   image: string;
   price: number;
 }

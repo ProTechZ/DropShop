@@ -1,10 +1,10 @@
+import React from 'react';
 import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCartOutlined';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import useGlobalStyles from '../../hooks/useGlobalStyles';
-import React from 'react';
 
 const TopSection: React.FC = () => {
   const classes = useGlobalStyles();

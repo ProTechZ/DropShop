@@ -1,10 +1,10 @@
+import React from 'react';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import TopSection from './TopSection';
 import SearchBar from './SearchBar';
 
 import useGlobalStyles from '../../hooks/useGlobalStyles';
-import React from 'react';
 
 const Navbar: React.FC = () => {
   const classes = useGlobalStyles();
