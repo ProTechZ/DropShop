@@ -1,11 +1,11 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import CardActionArea from '@mui/material/CardActionArea';
 import Typography from '@mui/material/Typography';
 import useGlobalStyles from '../../../hooks/useGlobalStyles';
+import useCapitaliseEachWord from '../../../hooks/useCapitaliseEachWord';
 import { useStyles } from '..';
+import { useNavigate } from 'react-router-dom';
 
 export interface ProductProps {
   _id: number;
@@ -20,34 +20,34 @@ const Product: React.FC<ProductProps> = (props) => {
   const classes = useGlobalStyles();
   const localClasses = useStyles();
 
-  const { title, category, image, price } = props;
+  const { _id: id, title, category, image } = props;
+
+  const navigate = useNavigate();
 
   return (
     <Box
       sx={{
         marginX: 1,
+        marginY: 0.5,
+        cursor: 'pointer',
+        '&:active': {
+          backgroundColor: 'lightgrey',
+        },
       }}
-      className={`
-        ${classes.secondaryBorder}
-        ${localClasses.borderRadius}
-      `}
+      onClick={() => navigate(`/products/${id}`)}
+      className={`${classes.secondaryBorder} ${localClasses.borderRadius}`}
     >
-      <CardActionArea sx={{ display: 'flex' }}>
-        <CardMedia
-          component="img"
-          className={`${localClasses.borderRadius} ${localClasses.ml1}`}
-          image={image}
-          alt={title}
-        />
-        <CardContent className={localClasses.ml1}>
+      <Box sx={{ margin: 1 }} className={classes.horizontalVerticalCenter}>
+        <img src={image} className={localClasses.sameSizedImage} alt={title} />
+        <CardContent>
           <Typography gutterBottom variant="h6">
             {title}
           </Typography>
           <Typography variant="subtitle1" color="text.secondary">
-            {category}
+            {useCapitaliseEachWord(category)}
           </Typography>
         </CardContent>
-      </CardActionArea>
+      </Box>
     </Box>
   );
 };

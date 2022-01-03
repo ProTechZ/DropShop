@@ -2,16 +2,18 @@ import axios, { AxiosError } from 'axios';
 import { ProductType } from '../pages/AllProducts';
 import { useState, useEffect } from 'react';
 
-const useProducts = () => {
+const useProduct = (productId: number) => {
   const [error, setError] = useState<AxiosError>();
-  const [data, setData] = useState<ProductType[]>([]);
+  const [data, setData] = useState<ProductType>();
 
   useEffect(() => {
     try {
       (async () => {
-        const res = await axios.get('http://localhost:8000/products');
-
-        setData(res.data as ProductType[]);
+        const res = await axios.get(
+          `http://localhost:8000/products/${productId}`
+        );
+          
+        setData(res.data as ProductType);
       })();
     } catch (err) {
       setError(err as AxiosError);
@@ -21,4 +23,4 @@ const useProducts = () => {
   return { error, data };
 };
 
-export default useProducts;
+export default useProduct;

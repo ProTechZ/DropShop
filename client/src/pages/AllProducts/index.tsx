@@ -17,7 +17,13 @@ export const useStyles = makeStyles({
   },
   ml1: {
     marginLeft: 1,
-  }
+  },
+  sameSizedImage: {
+    height: 'auto',
+    maxHeight: '175px',
+    width: 'auto',
+    maxWidth: '175px',
+  },
 });
 
 const AllProductsPage: React.FC = () => {

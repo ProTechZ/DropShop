@@ -18,4 +18,5 @@ const ProductsList: React.FC = () => {
   );
 };
 
+
 export default ProductsList;
