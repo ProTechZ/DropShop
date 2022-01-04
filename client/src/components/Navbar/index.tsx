@@ -13,9 +13,7 @@ const Navbar: React.FC = () => {
     <Box>
       <AppBar
         position="static"
-        sx={{
-          paddingY: '10px',
-        }}
+        sx={{ paddingY: 1 }}
         className={classes.horizontalVerticalCenter}
       >
         <TopSection />

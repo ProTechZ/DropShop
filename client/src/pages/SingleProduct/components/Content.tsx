@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import CollapseField from '../../../components/CollapseField';
 import Box from '@mui/material/Box';
 import useGlobalStyles from '../../../hooks/useGlobalStyles';
+import useCapitaliseEachWord from '../../../hooks/useCapitaliseEachWord';
 
 interface ContentProps {
   title: string;
@@ -15,7 +16,7 @@ interface ContentProps {
 const Content: React.FC<ContentProps> = (props) => {
   const classes = useGlobalStyles();
 
-  const { title, description, price, image, category } = props;
+  const { title, description, price, category } = props;
   return (
     <Box>
       <Typography
@@ -25,13 +26,14 @@ const Content: React.FC<ContentProps> = (props) => {
       >
         {title}
       </Typography>
-      <Typography sx={{ marginY: 1}} variant="h6">
-        {`$${price}`}
-      </Typography>
-      <CollapseField
-        title="Description"
-        text={description}
-      />
+
+      <Box
+        sx={{ display: 'flex', marginY: 3, justifyContent: 'space-between' }}
+      >
+        <Typography variant="h6">{`$${price.toFixed(2)}`}</Typography>
+        <Typography variant="h6">{useCapitaliseEachWord(category)}</Typography>
+      </Box>
+      <CollapseField title="Description" text={description} />
     </Box>
   );
 };

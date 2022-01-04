@@ -5,22 +5,30 @@ import IconButton from '@mui/material/IconButton';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import useGlobalStyles from '../../../hooks/useGlobalStyles';
 import { Link, useNavigate } from 'react-router-dom';
+import theme from '../../../theme';
 
-const BackToProducts: React.FC = () => {
+const ProductsListLink: React.FC = () => {
   const classes = useGlobalStyles();
 
   const navigate = useNavigate();
 
   return (
-    <Box className={classes.verticalCenter}>
-      <IconButton onClick={() => navigate('/products')}>
-        <KeyboardBackspaceIcon  />
-      </IconButton>
+    <Box sx={{}} className={classes.verticalCenter}>
+      <IconButton
+        sx={{
+          color: 'black',
+          '&:hover': { color: theme.palette.secondary.main },
+        }}
+        onClick={() => navigate('/products')}
+        children={<KeyboardBackspaceIcon />}
+      />
       <Typography variant="body1">
-        <Link to="/products">Back to All Products</Link>
+        <Link to="/products" className={classes.resetLink}>
+          Back to All Products
+        </Link>
       </Typography>
     </Box>
   );
 };
 
-export default BackToProducts;
+export default ProductsListLink;

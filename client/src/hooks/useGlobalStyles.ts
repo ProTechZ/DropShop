@@ -27,7 +27,15 @@ const useGlobalStyles = makeStyles({
   secondaryBorder: {
     border: `2px solid ${theme.palette.secondary.main}`,
   },
-
+  resetLink: {
+    textDecoration: 'none',
+    '&:visited': {
+      color: 'black',
+    },
+    '&:hover': {
+      color: theme.palette.secondary.main,
+    },
+  },
 });
 
 export default useGlobalStyles;

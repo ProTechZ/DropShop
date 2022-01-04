@@ -5,24 +5,24 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCartOutlined';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import useGlobalStyles from '../../hooks/useGlobalStyles';
+import { Link } from 'react-router-dom';
 
 const TopSection: React.FC = () => {
   const classes = useGlobalStyles();
 
   return (
     <Box
-      sx={{
-        gap: 6,
-        width: '90%',
-      }}
-      className={classes.horizontalVerticalCenter}
+      sx={{ justifyContent: 'space-between', width: '90%', color: 'white' }}
+      className={classes.verticalCenter}
     >
       <IconButton children={<MenuIcon fontSize="large" />} color="inherit" />
       <Typography
         variant="h5"
         sx={{ letterSpacing: 2.5, fontFamily: 'Fira Sans, sans-serif' }}
       >
-        DROPSHOP
+        <Link to="/" style={{ color: 'inherit' }} className={classes.resetLink}>
+          DROPSHOP
+        </Link>
       </Typography>
       <IconButton
         children={<ShoppingCartIcon fontSize="large" />}
