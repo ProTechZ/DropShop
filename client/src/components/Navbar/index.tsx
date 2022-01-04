@@ -10,17 +10,19 @@ const Navbar: React.FC = () => {
   const classes = useGlobalStyles();
 
   return (
-    <Box>
-      <AppBar
-        position="static"
-        sx={{ paddingY: 1 }}
-        className={classes.horizontalVerticalCenter}
-      >
-        <TopSection />
+    <>
+      <Box>
+        <AppBar
+          position="static"
+          sx={{ paddingY: 1 }}
+          className={classes.horizontalVerticalCenter}
+        >
+          <TopSection />
 
-        {/* <SearchBar /> */}
-      </AppBar>
-    </Box>
+          {/* <SearchBar /> */}
+        </AppBar>
+      </Box>
+    </>
   );
 };
 
