@@ -1,23 +1,37 @@
 import React, { useContext } from 'react';
 import { MenuContext } from '../../App';
-import Backdrop from '@mui/material/Backdrop';
+import useGlobalStyles from '../../hooks/useGlobalStyles';
+
+import Section from './Section';
+import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 
 const Menu: React.FC = () => {
+  const classes = useGlobalStyles();
   const { showMenu, setShowMenu } = useContext(MenuContext);
 
   return (
     <>
-      <Backdrop
-        sx={{ color: '#fff', zIndex: 10 }}
+      <Drawer
+        anchor={'left'}
         open={showMenu}
-        onClick={() => setShowMenu(false)}
+        onClose={() => setShowMenu(false)}
       >
-        <Drawer open={true} anchor='left'>
-          <h2>hi</h2>
+        <Box sx={{ width: 250 }}>
+          <Typography
+            variant="h3"
+            children="Menu"
+            className={classes.textCenter}
+          />
+          <Divider />
 
-        </Drawer>
-      </Backdrop>
+          <Section listItemObjs={[]} />
+          <Divider />
+          <Section title="Categories" listItemObjs={[]} />
+        </Box>
+      </Drawer>
     </>
   );
 };

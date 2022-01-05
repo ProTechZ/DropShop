@@ -28,7 +28,7 @@ export const MenuContext = createContext<MenuContextType>({
 });
 
 const App: React.FC = () => {
-  const [showMenu, setShowMenu] = useState(false);
+  const [showMenu, setShowMenu] = useState(true);
 
   return (
     <MenuContext.Provider value={{ showMenu, setShowMenu }}>
@@ -36,7 +36,7 @@ const App: React.FC = () => {
         <Navbar />
         {showMenu && <Menu />}
         <Routes>
-          <Route path="/" element={<h2>Home</h2>} />
+          {/* <Route path="/" element={<h2>Home</h2>} /> */}
           <Route path="/products" element={<AllProductsPage />} />
           <Route path="/products/:id" element={<ProductDetail />} />
         </Routes>
