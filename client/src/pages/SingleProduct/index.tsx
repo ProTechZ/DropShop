@@ -17,7 +17,7 @@ const SingleProduct: React.FC = () => {
 
   if (!data) return <LoadingScreen text="Loading..." />;
 
-  const { _id: id, title, image, } = data!;
+  const { _id: id, title, image,  } = data!;
 
   return (
     <Box
@@ -40,7 +40,7 @@ const SingleProduct: React.FC = () => {
         alt={title}
       />
       <Content {...data} />
-      <AddToCartBtn productId={id} />
+      <AddToCartBtn {...data} />
     </Box>
   );
 };

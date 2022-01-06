@@ -1,6 +1,9 @@
 import React from 'react';
-import ProductList from './components/ProductList';
 import { makeStyles } from '@mui/styles';
+import useProducts from '../../hooks/useProducts';
+
+import Product from './components/Product';
+import Grid from '@mui/material/Grid';
 
 export type ProductType = {
   _id: number;
@@ -27,10 +30,16 @@ export const useStyles = makeStyles({
 });
 
 const AllProductsPage: React.FC = () => {
+  const { data: products } = useProducts();
+
   return (
-    <>
-      <ProductList />
-    </>
+    <Grid sx={{ marginTop: 1 }} container spacing={2}>
+      {products.map((product: ProductType) => (
+        <Grid key={product._id} item>
+          <Product {...product} />
+        </Grid>
+      ))}
+    </Grid>
   );
 };
 

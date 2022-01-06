@@ -14,6 +14,7 @@ import AllProductsPage from './pages/AllProducts';
 
 import axios from 'axios';
 import ProductDetail from './pages/SingleProduct';
+import Cart from './pages/Cart';
 
 axios.defaults.withCredentials = true;
 
@@ -28,7 +29,7 @@ export const MenuContext = createContext<MenuContextType>({
 });
 
 const App: React.FC = () => {
-  const [showMenu, setShowMenu] = useState(true);
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
     <MenuContext.Provider value={{ showMenu, setShowMenu }}>
@@ -37,6 +38,7 @@ const App: React.FC = () => {
         {showMenu && <Menu />}
         <Routes>
           {/* <Route path="/" element={<h2>Home</h2>} /> */}
+          <Route path="/cart" element={<Cart />} />
           <Route path="/products" element={<AllProductsPage />} />
           <Route path="/products/:id" element={<ProductDetail />} />
         </Routes>

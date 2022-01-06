@@ -6,10 +6,12 @@ import Box from '@mui/material/Box';
 import useGlobalStyles from '../../hooks/useGlobalStyles';
 import Logo from './Logo';
 import { MenuContext } from '../../App';
+import { useNavigate } from 'react-router-dom';
 
 const TopSection: React.FC = () => {
   const classes = useGlobalStyles();
   const { showMenu, setShowMenu } = useContext(MenuContext);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -27,6 +29,9 @@ const TopSection: React.FC = () => {
         </IconButton>
         <Logo />
         <IconButton
+          onClick={() => {
+            navigate('/cart');
+          }}
           children={<ShoppingCartIcon fontSize="large" />}
           color="inherit"
         />
