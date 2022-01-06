@@ -52,7 +52,7 @@ export default store;
 //   title: 'string',
 //   category: 'string',
 //   description: 'string',
-//   image: 'string',
 //   price: 1,
+//   image: 'string',
 //   quantity: 1,
 // },

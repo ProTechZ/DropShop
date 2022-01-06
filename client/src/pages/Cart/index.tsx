@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import CartItem from './CartItem';
 import useStore from '../../state/store';
-import { ProductType } from '../AllProducts';
 
 const Cart: React.FC = () => {
-  const data: ProductType[] = [];
   const {items, addItemToCart } = useStore();
 
   return (

@@ -7,7 +7,6 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import { Link } from 'react-router-dom';
 
 const Menu: React.FC = () => {
   const classes = useGlobalStyles();
@@ -16,7 +15,7 @@ const Menu: React.FC = () => {
   return (
     <>
       <Drawer
-          anchor={'left'}
+        anchor={'left'}
         open={showMenu}
         onClose={() => setShowMenu(false)}
       >
@@ -27,7 +26,6 @@ const Menu: React.FC = () => {
             className={classes.textCenter}
           />
           <Divider />
-          <Link to='/products'>Products</Link>
           <Section listItemObjs={[]} />
           <Divider />
           <Section title="Categories" listItemObjs={[]} />

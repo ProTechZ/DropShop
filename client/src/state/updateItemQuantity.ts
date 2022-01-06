@@ -1,4 +1,3 @@
-import { ProductType } from '../pages/AllProducts';
 import { CartItemsType } from './store';
 
 const updateItemQuantity = (

@@ -18,7 +18,7 @@ const useProduct = (productId: number) => {
     } catch (err) {
       setError(err as AxiosError);
     }
-  }, []);
+  }, [productId]);
 
   return { error, data };
 };

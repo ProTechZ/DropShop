@@ -8,7 +8,6 @@ import Content from './components/Content';
 import AddToCartBtn from './components/AddToCartBtn';
 import ProductsListLink from './components/ProductsListLink';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 
 const SingleProduct: React.FC = () => {
   const classes = useGlobalStyles();
@@ -17,7 +16,7 @@ const SingleProduct: React.FC = () => {
 
   if (!data) return <LoadingScreen text="Loading..." />;
 
-  const { _id: id, title, image,  } = data!;
+  const { title, image } = data!;
 
   return (
     <Box
