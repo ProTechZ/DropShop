@@ -23,6 +23,7 @@ const Product: React.FC<ProductProps> = (props) => {
   const { _id: id, title, category, image } = props;
 
   const navigate = useNavigate();
+  
 
   return (
     <Box

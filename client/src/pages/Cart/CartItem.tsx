@@ -1,18 +1,64 @@
 import React from 'react';
-import { CartItemType } from '../../state/store';
+import useProduct from '../../hooks/useProduct';
+import { ProductType } from '../AllProducts/';
+import LoadingScreen from '../../components/LoadingScreen';
+import Product from '../AllProducts/components/Product';
+import Box from '@mui/material/Box';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import useGlobalStyles from '../../hooks/useGlobalStyles';
+import { useNavigate } from 'react-router-dom';
 
+interface CartItemProps {
+  id: number;
+}
 
-const CartItem: React.FC<CartItemType> = (props) => {
-  const {  title, category, description, price, image} = props;
+const CartItem: React.FC<CartItemProps> = ({ id }) => {
+  const classes = useGlobalStyles();
+  const { data } = useProduct(id);
+  const navigate = useNavigate();
 
-  return <>
-    <h2>{title}</h2>
-    <h2>{category}</h2>
-    <h2>{description}</h2>
-    <h2>{price}</h2>
-    <h2>{image}</h2>
-  
-  </>;
+  if (!data) return <LoadingScreen text="Loading..." />;
+
+  const { title, category, description, image, price } = data as ProductType;
+
+  return (
+    <>
+      <Box
+        sx={{
+          marginX: 1,
+          marginY: 0.5,
+          cursor: 'pointer',
+          '&:active': {
+            backgroundColor: 'lightgrey',
+          },
+        }}
+        onClick={() => navigate(`/products/${id}?cart=true`)}
+        className={classes.secondaryBorder}
+      >
+        <Box sx={{ margin: 1 }} className={classes.horizontalVerticalCenter}>
+          <img
+            style={{
+              height: 'auto',
+              maxHeight: '175px',
+              width: 'auto',
+              maxWidth: '175px',
+            }}
+            src={image}
+            alt={title}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h6">
+              {title}
+            </Typography>
+            <Typography variant="subtitle1" color="text.secondary">
+              {category}
+            </Typography>
+          </CardContent>
+        </Box>
+      </Box>
+    </>
+  );
 };
 
 export default CartItem;

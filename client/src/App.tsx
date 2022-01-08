@@ -37,7 +37,7 @@ const App: React.FC = () => {
         <Navbar />
         {showMenu && <Menu />}
         <Routes>
-          {/* <Route path="/" element={<h2>Home</h2>} /> */}
+          <Route path="/" element={<h2>Home</h2>} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/products" element={<AllProductsPage />} />
           <Route path="/products/:id" element={<ProductDetail />} />
