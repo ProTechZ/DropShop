@@ -40,8 +40,3 @@ app.use('/users', usersRouter);
 app.listen(PORT, () => {
   console.log(`The server is listening at http://localhost:${PORT}`);
 });
-
-// USER AUTH
-// ADMIN
-// DEALS
-// ORDERING

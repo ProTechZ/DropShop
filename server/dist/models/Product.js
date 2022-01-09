@@ -3,11 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var mongoose_1 = __importDefault(require("mongoose"));
-var productSchema = new mongoose_1.default.Schema({
+const mongoose_1 = __importDefault(require("mongoose"));
+const productSchema = new mongoose_1.default.Schema({
     _id: {
         type: Number,
-        default: function () { return +Math.random().toString().split('.')[1]; },
+        default: () => +Math.random().toString().split('.')[1],
     },
     title: {
         type: String,
@@ -29,5 +29,5 @@ var productSchema = new mongoose_1.default.Schema({
         required: true,
     },
 }, { _id: false });
-var Product = mongoose_1.default.model('Product', productSchema);
+const Product = mongoose_1.default.model('Product', productSchema);
 exports.default = Product;
