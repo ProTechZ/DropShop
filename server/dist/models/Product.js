@@ -7,7 +7,7 @@ var mongoose_1 = __importDefault(require("mongoose"));
 var productSchema = new mongoose_1.default.Schema({
     _id: {
         type: Number,
-        default: Math.random,
+        default: function () { return +Math.random().toString().split('.')[1]; },
     },
     title: {
         type: String,

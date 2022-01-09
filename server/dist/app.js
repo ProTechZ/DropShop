@@ -8,7 +8,6 @@ var dotenv_1 = require("dotenv");
 var mongoose_1 = __importDefault(require("mongoose"));
 var products_1 = __importDefault(require("./routes/products"));
 var users_1 = __importDefault(require("./routes/users"));
-var auth_1 = __importDefault(require("./routes/auth"));
 var cors_1 = __importDefault(require("cors"));
 (0, dotenv_1.config)();
 mongoose_1.default.connect(process.env.DB_CONNECT, function (error) {
@@ -35,7 +34,6 @@ app.use(function (req, res, next) {
 });
 app.use('/products', products_1.default);
 app.use('/users', users_1.default);
-app.use('/auth', auth_1.default);
 app.listen(PORT, function () {
     console.log("The server is listening at http://localhost:".concat(PORT));
 });

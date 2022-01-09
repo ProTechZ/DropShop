@@ -3,7 +3,6 @@ import { config } from 'dotenv';
 import mongoose from 'mongoose';
 import productsRouter from './routes/products';
 import usersRouter from './routes/users';
-import authRouter from './routes/auth';
 import cors from 'cors';
 
 config();
@@ -37,7 +36,6 @@ app.use((req, res, next) => {
 
 app.use('/products', productsRouter);
 app.use('/users', usersRouter);
-app.use('/auth', authRouter);
 
 app.listen(PORT, () => {
   console.log(`The server is listening at http://localhost:${PORT}`);

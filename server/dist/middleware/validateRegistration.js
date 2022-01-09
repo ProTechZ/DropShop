@@ -35,23 +35,37 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = require("express");
-var User_1 = require("../schemas/User");
-var router = (0, express_1.Router)();
-router.get('/login', function (req, res) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-    return [2 /*return*/];
-}); }); });
-router.get('/register', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, name, email, password;
+var User_1 = __importDefault(require("../models/User"));
+var User_2 = require("../schemas/User");
+var validateRegistration = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, name, email, password, error, userWithSameEmail;
     return __generator(this, function (_b) {
-        _a = req.body, name = _a.name, email = _a.email, password = _a.password;
-        // if (registerValidationSchema.validate({ name, email, password })) {
-        res.send(User_1.registerValidationSchema.validate({ name: name, email: email, password: password }));
-        return [2 /*return*/];
+        switch (_b.label) {
+            case 0:
+                _a = req.body, name = _a.name, email = _a.email, password = _a.password;
+                error = User_2.registerValidationSchema.validate({
+                    name: name,
+                    email: email,
+                    password: password,
+                }).error;
+                if (error === null || error === void 0 ? void 0 : error.details[0].message) {
+                    return [2 /*return*/, res.status(403).send(error === null || error === void 0 ? void 0 : error.details[0].message)];
+                }
+                return [4 /*yield*/, User_1.default.findOne({ email: email })];
+            case 1:
+                userWithSameEmail = _b.sent();
+                if (userWithSameEmail) {
+                    return [2 /*return*/, res
+                            .status(403)
+                            .send("A user with the email ".concat(email, " already exists"))];
+                }
+                next();
+                return [2 /*return*/];
+        }
     });
-}); });
-router.get('/logout', function (req, res) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-    return [2 /*return*/];
-}); }); });
-exports.default = router;
+}); };
+exports.default = validateRegistration;

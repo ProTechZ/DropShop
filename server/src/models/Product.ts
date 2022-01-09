@@ -4,7 +4,7 @@ const productSchema = new mongoose.Schema(
   {
     _id: {
       type: Number,
-      default: Math.random,
+      default: () => +Math.random().toString().split('.')[1],
     },
     title: {
       type: String,

@@ -41,43 +41,50 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var User_1 = __importDefault(require("../models/User"));
+var hashPassword_1 = __importDefault(require("../utility/hashPassword"));
+var createJWTCookie_1 = __importDefault(require("../utility/createJWTCookie"));
+var validateRegistration_1 = __importDefault(require("../middleware/validateRegistration"));
+var validateLogin_1 = __importDefault(require("../middleware/validateLogin"));
 var router = (0, express_1.Router)();
-router.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var allUsers, err_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
+router.get('/register', validateRegistration_1.default, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, name, email, password, newUser, _b, _c, _id;
+    var _d;
+    return __generator(this, function (_e) {
+        switch (_e.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, User_1.default.find({})];
-            case 1:
-                allUsers = _a.sent();
-                return [2 /*return*/, res.send(allUsers)];
+                _a = req.body, name = _a.name, email = _a.email, password = _a.password;
+                _c = (_b = User_1.default).create;
+                _d = {
+                    name: name,
+                    email: email
+                };
+                return [4 /*yield*/, (0, hashPassword_1.default)(password)];
+            case 1: return [4 /*yield*/, _c.apply(_b, [(_d.password = _e.sent(),
+                        _d)])];
             case 2:
-                err_1 = _a.sent();
-                console.error(err_1);
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                newUser = _e.sent();
+                return [4 /*yield*/, newUser.save()];
+            case 3:
+                _id = (_e.sent())._id;
+                return [2 /*return*/, res.send(_id)];
         }
     });
 }); });
-router.get('/:id', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var id, userWithID, err_2;
+router.get('/login', validateLogin_1.default, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var email, user;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
-                id = req.params.id;
-                return [4 /*yield*/, User_1.default.findOne({ _id: id })];
+                email = req.body.email;
+                return [4 /*yield*/, User_1.default.findOne({ email: email })];
             case 1:
-                userWithID = _a.sent();
-                res.send(userWithID);
-                return [3 /*break*/, 3];
-            case 2:
-                err_2 = _a.sent();
-                console.error(err_2);
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                user = _a.sent();
+                res.cookie('authCookie', (0, createJWTCookie_1.default)({ id: user._id }));
+                return [2 /*return*/, res.send('User has been successfully logged in')];
         }
     });
 }); });
+router.get('/logout', function (req, res) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
+    return [2 /*return*/, res.clearCookie('authCookie')];
+}); }); });
 exports.default = router;
