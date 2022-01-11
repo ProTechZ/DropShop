@@ -15,6 +15,7 @@ import AllProductsPage from './pages/AllProducts';
 import axios from 'axios';
 import ProductDetail from './pages/SingleProduct';
 import Cart from './pages/Cart';
+import RegisterPage from './pages/Register';
 
 axios.defaults.withCredentials = true;
 
@@ -32,6 +33,7 @@ const App: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
+    
     <MenuContext.Provider value={{ showMenu, setShowMenu }}>
       <BrowserRouter>
         <Navbar />
@@ -40,7 +42,10 @@ const App: React.FC = () => {
           <Route path="/" element={<h2>Home</h2>} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/products" element={<AllProductsPage />} />
-          <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path=" /products/:id" element={<ProductDetail />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<ProductDetail />} />
+          <Route path="/logout" element={<ProductDetail />} />
         </Routes>
       </BrowserRouter>
     </MenuContext.Provider>

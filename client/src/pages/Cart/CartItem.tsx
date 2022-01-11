@@ -2,7 +2,6 @@ import React from 'react';
 import useProduct from '../../hooks/useProduct';
 import { ProductType } from '../AllProducts/';
 import LoadingScreen from '../../components/LoadingScreen';
-import Product from '../AllProducts/components/Product';
 import Box from '@mui/material/Box';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -20,7 +19,7 @@ const CartItem: React.FC<CartItemProps> = ({ id }) => {
 
   if (!data) return <LoadingScreen text="Loading..." />;
 
-  const { title, category, description, image, price } = data as ProductType;
+  const { title, category, image } = data as ProductType;
 
   return (
     <>
@@ -32,6 +31,7 @@ const CartItem: React.FC<CartItemProps> = ({ id }) => {
           '&:active': {
             backgroundColor: 'lightgrey',
           },
+          borderRadius: 2.5,
         }}
         onClick={() => navigate(`/products/${id}?cart=true`)}
         className={classes.secondaryBorder}
