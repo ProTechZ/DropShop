@@ -16,6 +16,8 @@ import axios from 'axios';
 import ProductDetail from './pages/SingleProduct';
 import Cart from './pages/Cart';
 import RegisterPage from './pages/Register';
+import LoginPage from './pages/Login';
+import LogoutPage from './pages/Logout';
 
 axios.defaults.withCredentials = true;
 
@@ -42,10 +44,10 @@ const App: React.FC = () => {
           <Route path="/" element={<h2>Home</h2>} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/products" element={<AllProductsPage />} />
-          <Route path=" /products/:id" element={<ProductDetail />} />
+          <Route path="/products/:id" element={<ProductDetail />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<ProductDetail />} />
-          <Route path="/logout" element={<ProductDetail />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/logout" element={<LogoutPage />} />
         </Routes>
       </BrowserRouter>
     </MenuContext.Provider>

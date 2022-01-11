@@ -25,7 +25,7 @@ router.post('/login', validateLogin, async (req, res) => {
 
   const user = await User.findOne({ email });
 
-  res.cookie('authCookie', createJWTCookie({ id: user._id }));
+  res.cookie('authCookie', createJWTCookie({ id: user._id }), { httpOnly: false });
 
   return res.send('User has been successfully logged in');
 });

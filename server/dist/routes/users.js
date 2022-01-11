@@ -32,7 +32,7 @@ router.post('/register', validateRegistration_1.default, (req, res) => __awaiter
 router.post('/login', validateLogin_1.default, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email } = req.body;
     const user = yield User_1.default.findOne({ email });
-    res.cookie('authCookie', (0, createJWTCookie_1.default)({ id: user._id }));
+    res.cookie('authCookie', (0, createJWTCookie_1.default)({ id: user._id }), { httpOnly: false });
     return res.send('User has been successfully logged in');
 }));
 router.get('/logout', (req, res) => __awaiter(void 0, void 0, void 0, function* () {

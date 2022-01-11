@@ -9,18 +9,17 @@ import { useNavigate } from 'react-router-dom';
 import SubmitButton from './SubmitButton';
 import CustomLink from '../../components/CustomLink';
 
-const RegisterPage: React.FC = () => {
+const LoginPage: React.FC = () => {
   const classes = useGlobalStyles();
   const navigate = useNavigate();
 
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const formHandler = () => {
-    if (name && email && password) {
+    if (email && password) {
       axios
-        .post('http://localhost:8000/users/register', { name, email, password })
+        .post('http://localhost:8000/users/login', { email, password })
         .then((res) => navigate('/'))
         .catch((err) => console.error(err));
     }
@@ -37,16 +36,10 @@ const RegisterPage: React.FC = () => {
         }}
       >
         <Typography
-          children="Register"
+          children="Login"
           fontWeight={900}
           variant="h4"
           sx={{ marginBottom: 2.5 }}
-        />
-        <FormField
-          setState={setName}
-          state={name}
-          label="Full Name"
-          placeholder="John Doe"
         />
         <FormField
           setState={setEmail}
@@ -57,12 +50,12 @@ const RegisterPage: React.FC = () => {
         />
         <PasswordField state={password} setState={setPassword} />
         <SubmitButton formHandler={formHandler} />
-        <CustomLink to="/login" variant="body1">
-          Already have an account? Login
+        <CustomLink to="/register" variant="body1">
+          New to DropShop? Register here
         </CustomLink>
       </form>
     </Box>
   );
 };
 
-export default RegisterPage;
+export default LoginPage;
