@@ -32,10 +32,9 @@ export const MenuContext = createContext<MenuContextType>({
 });
 
 const App: React.FC = () => {
-  const [showMenu, setShowMenu] = useState(false);
+  const [showMenu, setShowMenu] = useState(true);
 
   return (
-    
     <MenuContext.Provider value={{ showMenu, setShowMenu }}>
       <BrowserRouter>
         <Navbar />

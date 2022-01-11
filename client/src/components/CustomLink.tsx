@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 import useGlobalStyles from '../hooks/useGlobalStyles';
+import { MenuContext } from '../App';
 
 interface CustomLinkProps {
   variant:
@@ -20,13 +21,25 @@ interface CustomLinkProps {
     | 'overline'
     | 'inherit';
   to: string;
+  sx?: {};
 }
 
-const CustomLink: React.FC<CustomLinkProps> = ({ children, variant, to }) => {
+const CustomLink: React.FC<CustomLinkProps> = ({
+  children,
+  sx,
+  variant,
+  to,
+}) => {
   const classes = useGlobalStyles();
+  const { setShowMenu } = useContext(MenuContext);
+
   return (
-    <Typography variant={variant}>
-      <Link className={classes.resetLink} to={to}>
+    <Typography variant={variant} sx={sx}>
+      <Link
+        className={classes.resetLink}
+        onClick={() => setShowMenu(false)}
+        to={to}
+      >
         {children}
       </Link>
     </Typography>
