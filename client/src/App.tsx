@@ -32,7 +32,7 @@ export const MenuContext = createContext<MenuContextType>({
 });
 
 const App: React.FC = () => {
-  const [showMenu, setShowMenu] = useState(true);
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
     <MenuContext.Provider value={{ showMenu, setShowMenu }}>

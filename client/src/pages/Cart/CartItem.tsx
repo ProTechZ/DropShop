@@ -25,7 +25,6 @@ const CartItem: React.FC<CartItemProps> = ({ id }) => {
     <>
       <Box
         sx={{
-          marginX: 1,
           marginY: 0.5,
           cursor: 'pointer',
           '&:active': {

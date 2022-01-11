@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@mui/styles';
 import useProducts from '../../hooks/useProducts';
 
@@ -32,9 +32,6 @@ export const useStyles = makeStyles({
 
 const AllProductsPage: React.FC = () => {
   const { data: products } = useProducts();
-  const { setShowMenu } = useContext(MenuContext);
-
-  useEffect(() => setShowMenu(false), []);
 
   return (
     <Grid sx={{ marginTop: 1 }} container spacing={2}>
