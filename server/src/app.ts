@@ -1,11 +1,12 @@
 import express from 'express';
-import { config } from 'dotenv';
+import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import productsRouter from './routes/products';
 import usersRouter from './routes/users';
 import cors from 'cors';
+import path from 'path';
 
-config();
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 mongoose.connect(process.env.DB_CONNECT!, (error) => {
   console.log('Connected to the MongoDB server');
@@ -16,7 +17,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: ['http://localhost:3000'],
+    origin: true,
     credentials: true,
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Set-Cookie'],

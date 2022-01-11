@@ -7,7 +7,7 @@ import validateLogin from '../middleware/validateLogin';
 
 const router = Router();
 
-router.get('/register', validateRegistration, async (req, res) => {
+router.post('/register', validateRegistration, async (req, res) => {
   const { name, email, password } = req.body;
 
   const newUser = await User.create({
@@ -20,7 +20,7 @@ router.get('/register', validateRegistration, async (req, res) => {
   return res.send(_id);
 });
 
-router.get('/login', validateLogin, async (req, res) => {
+router.post('/login', validateLogin, async (req, res) => {
   const { email } = req.body;
 
   const user = await User.findOne({ email });
@@ -30,6 +30,9 @@ router.get('/login', validateLogin, async (req, res) => {
   return res.send('User has been successfully logged in');
 });
 
-router.get('/logout', async (req, res) => res.clearCookie('authCookie'));
+router.get('/logout', async (req, res) => {
+  res.clearCookie('authCookie');
+  return res.send('User has been successfully logged out');
+});
 
 export default router;

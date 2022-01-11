@@ -19,7 +19,7 @@ const createJWTCookie_1 = __importDefault(require("../utility/createJWTCookie"))
 const validateRegistration_1 = __importDefault(require("../middleware/validateRegistration"));
 const validateLogin_1 = __importDefault(require("../middleware/validateLogin"));
 const router = (0, express_1.Router)();
-router.get('/register', validateRegistration_1.default, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post('/register', validateRegistration_1.default, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, email, password } = req.body;
     const newUser = yield User_1.default.create({
         name,
@@ -29,11 +29,14 @@ router.get('/register', validateRegistration_1.default, (req, res) => __awaiter(
     const { _id } = yield newUser.save();
     return res.send(_id);
 }));
-router.get('/login', validateLogin_1.default, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post('/login', validateLogin_1.default, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email } = req.body;
     const user = yield User_1.default.findOne({ email });
     res.cookie('authCookie', (0, createJWTCookie_1.default)({ id: user._id }));
     return res.send('User has been successfully logged in');
 }));
-router.get('/logout', (req, res) => __awaiter(void 0, void 0, void 0, function* () { return res.clearCookie('authCookie'); }));
+router.get('/logout', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.clearCookie('authCookie');
+    return res.send('User has been successfully logged out');
+}));
 exports.default = router;
