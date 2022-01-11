@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { makeStyles } from '@mui/styles';
 import useProducts from '../../hooks/useProducts';
 
 import Product from './components/Product';
 import Grid from '@mui/material/Grid';
+import { MenuContext } from '../../App';
 
 export type ProductType = {
   _id: number;
@@ -31,6 +32,9 @@ export const useStyles = makeStyles({
 
 const AllProductsPage: React.FC = () => {
   const { data: products } = useProducts();
+  const { setShowMenu } = useContext(MenuContext);
+
+  useEffect(() => setShowMenu(false), []);
 
   return (
     <Grid sx={{ marginTop: 1 }} container spacing={2}>

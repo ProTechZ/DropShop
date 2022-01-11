@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 import { MenuContext } from '../../App';
 import useGlobalStyles from '../../hooks/useGlobalStyles';
 
+import BulletedListIcon from '@mui/icons-material/FormatListBulleted';
 import HomeIcon from '@mui/icons-material/Home';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
+
 import Section from './Section';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -37,7 +39,15 @@ const Menu: React.FC = () => {
             ]}
           />
           <Divider />
-          <Section title="Categories" listItemObjs={[]} />
+          <Section
+            listItemObjs={[
+              {
+                name: 'All Products',
+                to: '/products',
+                icon: <BulletedListIcon />,
+              },
+            ]}
+          />
         </Box>
       </Drawer>
     </>
