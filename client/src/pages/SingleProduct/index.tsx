@@ -16,7 +16,7 @@ const SingleProduct: React.FC = () => {
 
   if (!data) return <LoadingScreen text="Loading..." />;
 
-  const { title, image } = data!;
+  const {_id,  title, image } = data!;
 
   return (
     <Box
@@ -39,7 +39,7 @@ const SingleProduct: React.FC = () => {
         alt={title}
       />
       <Content {...data} />
-      <AddToCartBtn {...data} />
+      <AddToCartBtn id={_id} />
     </Box>
   );
 };

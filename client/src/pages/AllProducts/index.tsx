@@ -4,7 +4,6 @@ import useProducts from '../../hooks/useProducts';
 
 import Product from './components/Product';
 import Grid from '@mui/material/Grid';
-import { MenuContext } from '../../App';
 
 export type ProductType = {
   _id: number;

@@ -15,7 +15,7 @@ import Divider from '@mui/material/Divider';
 
 const Menu: React.FC = () => {
   const classes = useGlobalStyles();
-  const { showMenu, setShowMenu } = useContext(MenuContext);
+  const { showMenu, setShowMenu } = useContext(MenuContext)
 
   return (
     <>
