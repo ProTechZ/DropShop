@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import FormField from '../../components/FormField';
 import PasswordField from '../../components/PasswordField';
 import useGlobalStyles from '../../hooks/useGlobalStyles';
 import { useNavigate } from 'react-router-dom';
+import SubmitButton from './SubmitButton';
 
 const RegisterPage: React.FC = () => {
   const classes = useGlobalStyles();
@@ -18,10 +18,8 @@ const RegisterPage: React.FC = () => {
 
   const formHandler = () => {
     if (name && email && password) {
-      const data = { name, email, password };
-
       axios
-        .post('http://localhost:8000/users/register', data)
+        .post('http://localhost:8000/users/register', { name, email, password })
         .then((res) => navigate('/'))
         .catch((err) => console.error(err));
     }
@@ -57,17 +55,7 @@ const RegisterPage: React.FC = () => {
           placeholder="john.doe@gmail.com"
         />
         <PasswordField state={password} setState={setPassword} />
-        <Button
-          variant="contained"
-          color="secondary"
-          sx={{ fontSize: 17.5 }}
-          type="submit"
-          children="Register"
-          onClick={(event) => {
-            event.preventDefault();
-            formHandler();
-          }}
-        />
+        <SubmitButton formHandler={formHandler} />
       </form>
     </Box>
   );
